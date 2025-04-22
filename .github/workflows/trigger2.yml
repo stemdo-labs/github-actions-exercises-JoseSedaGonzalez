@@ -1,16 +1,16 @@
-# .github/workflows/push_develop.yml
+# # .github/workflows/push_develop.yml
 
-name: Push to My Branch
+# name: Push to My Branch
 
-on:
-  push:
-    branches:
-      - jseda-github_actions  # Se ejecuta solo si el push es a la rama 'jseda-github_actions'
+# on:
+#   push:
+#     branches:
+#       - jseda-github_actions  # Se ejecuta solo si el push es a la rama 'jseda-github_actions'
 
-jobs:
-  hello-world:
-    runs-on: labs-runner  # Utiliza un runner de GitHub (máquina virtual Ubuntu)
+# jobs:
+#   hello-world:
+#     runs-on: labs-runner  # Utiliza un runner de GitHub (máquina virtual Ubuntu)
 
-    steps:
-      - name: Saludo por consola
-        run: echo "Hello, World!"  # Imprime el mensaje en la consola
+#     steps:
+#       - name: Saludo por consola
+#         run: echo "Hello, World!"  # Imprime el mensaje en la consola

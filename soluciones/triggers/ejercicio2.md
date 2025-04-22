@@ -24,3 +24,4 @@ jobs:
         run: echo "Hello, World!"  # Paso que imprime el mensaje en la consola del workflow.
 
 ````
+<br><img src="../../datos/trigger2.png">
