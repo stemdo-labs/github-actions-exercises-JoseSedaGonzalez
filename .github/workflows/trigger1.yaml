@@ -8,7 +8,7 @@ on:
 
 jobs:
   check-pull-request:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v3
