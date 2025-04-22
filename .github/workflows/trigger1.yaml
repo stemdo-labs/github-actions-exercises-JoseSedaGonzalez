@@ -1,0 +1,17 @@
+# .github/workflows/pull_request.yml
+
+name: Pull Request Trigger
+
+on:
+  pull_request:
+    types: [opened]  # Se ejecuta solo cuando se abre el PR
+
+jobs:
+  check-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Mostrar mensaje
+        run: echo "Pull Request abierto correctamente"
