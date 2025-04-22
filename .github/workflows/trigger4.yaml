@@ -1,0 +1,15 @@
+# .github/workflows/scheduled_job.yml
+
+name: Daily Scheduled Job
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # Ejecuta el workflow todos los días a las 14:00 UTC
+
+jobs:
+  scheduled-job:
+    runs-on: labs-runner  # Utiliza un runner estándar de GitHub (Ubuntu)
+
+    steps:
+      - name: Saludo por consola
+        run: echo "Scheduled job executed!"  # Imprime el mensaje en la consola

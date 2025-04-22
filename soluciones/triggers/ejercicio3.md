@@ -22,3 +22,4 @@ jobs:
         # Este paso imprime un mensaje simple como prueba del trigger.
 
 ````
+<br><img src="../../datos/trigger3.png">

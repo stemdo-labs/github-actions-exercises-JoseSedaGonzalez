@@ -1,15 +1,15 @@
-# .github/workflows/issue_created.yml
+ # .github/workflows/issue_created.yml
 
-name: Issue Created
+ name: Issue Created
 
-on:
-  issues:
-    types: [opened]  # El workflow se ejecuta cuando se abre una nueva Issue
+ on:
+   issues:
+     types: [opened]  # El workflow se ejecuta cuando se abre una nueva Issue
 
-jobs:
-  notify-issue:
-    runs-on: labs-runner 
+ jobs:
+   notify-issue:
+     runs-on: labs-runner 
 
-    steps:
-      - name: Mostrar mensaje en consola
-        run: echo "Se ha creado una nueva Issue en el repositorio"
+     steps:
+       - name: Mostrar mensaje en consola
+         run: echo "Se ha creado una nueva Issue en el repositorio"
