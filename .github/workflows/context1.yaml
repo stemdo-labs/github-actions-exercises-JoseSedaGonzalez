@@ -1,11 +1,11 @@
 name: Contextos - Info del Runner
 
 on:
-  workflow_dispatch:  # Permite ejecutarlo manualmente
+  workflow_dispatch:
 
 jobs:
   info-runner:
-    runs-on: ubuntu-latest  # Puedes cambiar a 'self-hosted', 'macos-latest', etc.
+    runs-on: ubuntu-latest
 
     steps:
       - name: Mostrar nombre del sistema operativo
@@ -19,3 +19,4 @@ jobs:
 
       - name: Verificar espacio en disco disponible
         run: df -h
+
