@@ -3,6 +3,9 @@ name: Job y Steps - Ejercicio 1
 on:
   workflow_dispatch:  # Permite ejecutar el workflow manualmente
 
+permissions:
+  contents: write
+
 jobs:
   full-task:
     runs-on: labs-runner
