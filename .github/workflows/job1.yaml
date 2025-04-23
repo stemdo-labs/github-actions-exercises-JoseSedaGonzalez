@@ -8,13 +8,13 @@ jobs:
     runs-on: labs-runner
 
     steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
       - name: Configurar usuario Git
         run: |
           git config --global user.name "JoseSedaGonzalez"
           git config --global user.email "jseda@stemdo.io"
-
-      - name: Clonar el repositorio
-        uses: actions/checkout@v3
 
       - name: Mostrar fecha y hora actual
         run: date
