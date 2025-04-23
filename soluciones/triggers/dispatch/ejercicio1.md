@@ -8,22 +8,26 @@
 
 ````yml
 # .github/workflows/manual_dispatch.yml
+# Este archivo define un workflow de GitHub Actions que se puede ejecutar manualmente desde la interfaz de GitHub.
 
-name: Manual Dispatch Example
+name: Manual Dispatch Example  # Nombre del workflow que aparecerá en la pestaña "Actions"
 
 on:
-  workflow_dispatch:
-    inputs:
+  workflow_dispatch:  # Evento que permite ejecutar el workflow manualmente
+    inputs:  # Sección donde se definen los parámetros (inputs) que el usuario puede introducir al lanzar el workflow
       message:
-        description: 'Mensaje personalizado para mostrar'
-        required: true
-        default: '¡Hola desde GitHub Actions!'
+        description: 'Mensaje personalizado para mostrar'  # Descripción del input que verá el usuario
+        required: true  # Este input es obligatorio
+        default: '¡Hola desde GitHub Actions!'  # Valor por defecto si el usuario no introduce nada
 
 jobs:
-  print-message:
-    runs-on: labs-runner
+  print-message:  # Nombre del job (conjunto de pasos que se ejecutan)
+    runs-on: ubuntu-latest  # Especifica el tipo de máquina virtual (runner) que se usará. Aquí es Ubuntu.
 
     steps:
-      - name: Mostrar el mensaje ingresado
-        run: echo "Mensaje recibido ${{ github.event.inputs.message }}"
+      - name: Mostrar el mensaje ingresado  # Nombre descriptivo del paso
+        run: echo "Mensaje recibido: '${{ github.event.inputs.message }}'"  
+        # Ejecuta un comando que imprime el mensaje ingresado por el usuario. 
+        # `${{ github.event.inputs.message }}` accede al valor del input definido más arriba.
+
 ````
