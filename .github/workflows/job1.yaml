@@ -1,0 +1,37 @@
+# .github/workflows/jobs_steps_1.yml
+
+name: Job y Steps - Ejercicio 1
+
+on:
+  workflow_dispatch:  # Permite ejecutar el workflow manualmente
+
+jobs:
+  full-task:
+    runs-on: labs-runner
+
+    steps:
+      - name: Configurar usuario Git
+        run: |
+          git config --global user.name "JoseSedaGonzalez"
+          git config --global user.email "jseda@stemdo.io"
+
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Mostrar fecha y hora actual
+        run: date
+
+      - name: Crear archivo de texto
+        run: echo "Este archivo fue creado automáticamente el $(date)" > archivo_automático.txt
+
+      - name: Listar archivos del directorio
+        run: ls -la
+
+      - name: Hacer commit y push del archivo creado
+        run: |
+          git add archivo_automático.txt
+          git commit -m "Add automatic file from workflow"
+          git push
+        env:
+          # Necesitas un token con permisos de escritura en el repo. Esto usa el token automático de GitHub.
+          GITHUB_TOKEN: ${{ secrets.MY_PAT }}
