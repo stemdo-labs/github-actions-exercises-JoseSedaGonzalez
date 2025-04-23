@@ -1,0 +1,34 @@
+name: Subir y descargar artefacto
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-artifact:
+    name: Subir archivo como artefacto
+    runs-on: labs-runner
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Verificar archivo a subir
+        run: ls -l archivo_automático.txt
+
+      - name: Subir archivo como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-artifact
+          path: archivo_automático.txt
+
+  download-artifact:
+    name: Descargar y mostrar artefacto
+    needs: upload-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: demo-artifact
+
+      - name: Mostrar contenido del archivo
+        run: cat archivo_automático.txt
