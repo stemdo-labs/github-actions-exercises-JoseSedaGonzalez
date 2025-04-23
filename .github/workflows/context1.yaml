@@ -1,0 +1,21 @@
+name: Contextos - Info del Runner
+
+on:
+  workflow_dispatch:  # Permite ejecutarlo manualmente
+
+jobs:
+  info-runner:
+    runs-on: ubuntu-latest  # Puedes cambiar a 'self-hosted', 'macos-latest', etc.
+
+    steps:
+      - name: Mostrar nombre del sistema operativo
+        run: echo "Sistema operativo: ${{ runner.os }}"
+
+      - name: Mostrar arquitectura del runner
+        run: echo "Arquitectura: ${{ runner.arch }}"
+
+      - name: Mostrar nombre del runner
+        run: echo "Nombre del runner: ${{ runner.name }}"
+
+      - name: Verificar espacio en disco disponible
+        run: df -h
