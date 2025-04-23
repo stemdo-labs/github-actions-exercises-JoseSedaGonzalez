@@ -8,5 +8,6 @@ runs:
       run: |
         autor=$(git log -1 --pretty=format:'%an')
         echo "El autor del último commit es: $autor"
-        echo "author=$author" >> $GITHUB_OUTPUT # Guarda el autor en $GITHUB_OUTPUT
+        echo "author=$autor" >> $GITHUB_OUTPUT
       shell: bash
+
