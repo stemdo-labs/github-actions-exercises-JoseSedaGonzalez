@@ -1,0 +1,25 @@
+name: Contextos - Selección de API Key
+
+on:
+  workflow_dispatch:  # Permite ejecutar manualmente el workflow
+  push:               # También se puede ejecutar automáticamente con push
+    branches:
+      - '**'          # En todas las ramas
+
+jobs:
+  despliegue:
+    runs-on: labs-runner
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Seleccionar API Key y hacer despliegue ficticio
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "Desplegando en producción con PROD_API_KEY"
+            echo "API Key usada: ${{ secrets.PROD_API_KEY }}"
+          else
+            echo "Desplegando en staging con STAGING_API_KEY"
+            echo "API Key usada: ${{ secrets.STAGING_API_KEY }}"
+          fi
