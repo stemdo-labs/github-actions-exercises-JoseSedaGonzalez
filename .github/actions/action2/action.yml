@@ -4,7 +4,9 @@ runs:
   using: "composite"
   steps:
     - name: Obtener y mostrar autor del último commit
+      id: get-author
       run: |
         autor=$(git log -1 --pretty=format:'%an')
         echo "El autor del último commit es: $autor"
+        echo "author=$author" >> $GITHUB_OUTPUT # Guarda el autor en $GITHUB_OUTPUT
       shell: bash
