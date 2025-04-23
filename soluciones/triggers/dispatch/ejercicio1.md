@@ -21,7 +21,7 @@ on:
 
 jobs:
   print-message:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
 
     steps:
       - name: Mostrar el mensaje ingresado
