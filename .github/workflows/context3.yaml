@@ -1,0 +1,19 @@
+name: Contextos - Notificación después de tarea
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tarea-y-notificacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ejecutar tarea ficticia
+        run: echo "Realizando una tarea ficticia..."
+
+      - name: Notificar resultado
+        if: always()
+        run: |
+          echo "Enviando notificación a la URL simulada..."
+          echo "Estado del job: ${{ job.status }}"
+          echo "Evento que disparó el workflow: ${{ github.event_name }}"
