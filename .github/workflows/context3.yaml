@@ -5,7 +5,7 @@ on:
 
 jobs:
   tarea-y-notificacion:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
 
     steps:
       - name: Ejecutar tarea ficticia

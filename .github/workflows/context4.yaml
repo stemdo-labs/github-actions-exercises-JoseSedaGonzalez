@@ -1,0 +1,25 @@
+name: Verificar título de PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar si el título contiene 'urgent'
+        run: |
+          titulo="${{ github.event.pull_request.title }}"
+          cuerpo="${{ github.event.pull_request.body }}"
+
+          echo "Título del PR: $titulo"
+
+          if [[ "$titulo" == *urgent* ]]; then
+            echo "Palabra clave 'urgent' encontrada en el título."
+            echo "Cuerpo del PR: $cuerpo"
+          else
+            echo "ERROR: El título del PR no contiene la palabra clave 'urgent'."
+            exit 1  # Esto hace que falle el paso y el job
+          fi
