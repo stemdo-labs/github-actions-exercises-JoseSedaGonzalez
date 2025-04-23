@@ -1,0 +1,20 @@
+# .github/workflows/jobs_steps_2.yml
+
+name: Jobs y Steps - Ejercicio 2
+
+on:
+  workflow_dispatch:  # Permite ejecutar el workflow manualmente
+
+jobs:
+  build:
+    runs-on: labs-runner
+    steps:
+      - name: Simular proceso de build
+        run: echo "Ejecutando el build..."
+
+  deploy:
+    runs-on: labs-runner
+    needs: build  # Este job solo se ejecuta si 'build' tiene éxito
+    steps:
+      - name: Desplegando aplicación
+        run: echo "El despliegue se está realizando tras un build exitoso"
