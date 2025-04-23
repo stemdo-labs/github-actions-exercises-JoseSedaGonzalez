@@ -13,7 +13,3 @@ jobs:
 
       - name: Ejecutar la acción personalizada
         uses: ./.github/actions/action2
-
-      - name: Mostrar autor del último commit
-        run: echo "El autor del último commit es ${{ steps.get-author.outputs.author }}"
-
