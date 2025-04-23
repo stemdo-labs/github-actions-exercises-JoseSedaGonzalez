@@ -1,0 +1,13 @@
+name: Crear archivo de texto
+description: Crea un archivo de texto con un mensaje dado
+inputs:
+  mensaje:
+    description: "Mensaje que se va a guardar en el archivo"
+    required: true
+    default: "Mensaje por defecto"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Crear archivo
+      run: echo "${{ inputs.mensaje }}" > mensaje_personalizado.txt

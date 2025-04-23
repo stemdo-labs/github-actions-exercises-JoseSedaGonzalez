@@ -1,0 +1,24 @@
+name: Usar acción personalizada
+
+on:
+  workflow_dispatch:
+    inputs:
+      mensaje:
+        description: "Mensaje que se pasará a la acción"
+        required: true
+        default: "¡Hola desde el workflow!"
+
+jobs:
+  ejecutar-accion:
+    runs-on: labs-runner
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Usar la acción personalizada
+        uses: ./.github/actions/action1
+        with:
+          mensaje: ${{ github.event.inputs.mensaje }}
+
+      - name: Mostrar archivo creado
+        run: cat mensaje_personalizado.txt
