@@ -1,0 +1,23 @@
+# .github/workflows/select_environment.yml
+
+name: Manual Environment Selector
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Selecciona el entorno'
+        required: true
+        type: choice  # Indica que el input es un desplegable con opciones
+        options:
+          - production
+          - staging
+        default: staging
+
+jobs:
+  show-environment:
+    runs-on: labs-runner
+
+    steps:
+      - name: Mostrar entorno seleccionado
+        run: echo "${{ github.event.inputs.environment }}"

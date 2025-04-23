@@ -31,3 +31,4 @@ jobs:
         # `${{ github.event.inputs.message }}` accede al valor del input definido más arriba.
 
 ````
+<br><img src="../../../datos/dispatch1.png">
