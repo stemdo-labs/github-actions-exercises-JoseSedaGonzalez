@@ -9,13 +9,13 @@ jobs:
 
     steps:
       - name: Mostrar nombre del sistema operativo
-        run: echo "Sistema operativo: ${{ runner.os }}"
+        run: echo "Sistema operativo ${{ runner.os }}"
 
       - name: Mostrar arquitectura del runner
-        run: echo "Arquitectura: ${{ runner.arch }}"
+        run: echo "Arquitectura ${{ runner.arch }}"
 
       - name: Mostrar nombre del runner
-        run: echo "Nombre del runner: ${{ runner.name }}"
+        run: echo "Nombre del runner ${{ runner.name }}"
 
       - name: Verificar espacio en disco disponible
         run: df -h
