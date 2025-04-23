@@ -22,7 +22,7 @@ on:
 
 jobs:
   print-message:  # Nombre del job (conjunto de pasos que se ejecutan)
-    runs-on: ubuntu-latest  # Especifica el tipo de máquina virtual (runner) que se usará. Aquí es Ubuntu.
+    runs-on: LABS-RUNNER
 
     steps:
       - name: Mostrar el mensaje ingresado  # Nombre descriptivo del paso
