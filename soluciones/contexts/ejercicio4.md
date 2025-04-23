@@ -38,3 +38,4 @@ jobs:
             echo "ERROR: El título del PR no contiene la palabra clave 'urgent'."
             exit 1
 ````
+<br><img src="../../datos/context4.png">
