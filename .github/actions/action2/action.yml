@@ -1,0 +1,10 @@
+name: Mostrar autor del último commit
+description: Imprime el nombre del autor del último commit en los logs
+runs:
+  using: "composite"
+  steps:
+    - name: Obtener y mostrar autor del último commit
+      run: |
+        autor=$(git log -1 --pretty=format:'%an')
+        echo "El autor del último commit es: $autor"
+      shell: bash
