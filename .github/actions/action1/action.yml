@@ -11,3 +11,4 @@ runs:
   steps:
     - name: Crear archivo
       run: echo "${{ inputs.mensaje }}" > mensaje_personalizado.txt
+      shell: bash
