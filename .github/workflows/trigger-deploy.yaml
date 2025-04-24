@@ -23,9 +23,9 @@ jobs:
 
           if [[ "$BRANCH" == "main" ]]; then
             echo "entorno=production" >> $GITHUB_OUTPUT
-          elif [[ "$BRANCH" == "develop" ]]; then
+          elif [[ "$BRANCH" == "dev" ]]; then
             echo "entorno=development" >> $GITHUB_OUTPUT
-          elif [[ "$BRANCH" == release/* ]]; then
+          elif [[ "$BRANCH" == jseda-github_actions ]]; then
             echo "entorno=staging" >> $GITHUB_OUTPUT
           else
             echo "Rama no válida para despliegue"
@@ -33,6 +33,6 @@ jobs:
 
   llamar-deploy:
     needs: elegir-entorno
-    uses: nombre-usuario/nombre-repo/.github/workflows/deploy-environment.yml@main
+    uses: .github/workflows/deploy-environment.yml@main
     with:
       environment: ${{ needs.elegir-entorno.outputs.entorno }}
