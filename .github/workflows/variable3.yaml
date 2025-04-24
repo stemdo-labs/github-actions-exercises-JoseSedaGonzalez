@@ -1,0 +1,29 @@
+# Nombre del workflow
+name: Variables y Outputs - Ejercicio 3
+
+# El workflow se ejecuta manualmente
+on:
+  workflow_dispatch:
+
+jobs:
+  numero-aleatorio:
+    runs-on: labs-runner
+
+    steps:
+      # Paso 1: Generar un número aleatorio del 1 al 100
+      - name: Generar número aleatorio
+        id: generar
+        run: |
+          numero=$(( ( RANDOM % 100 ) + 1 ))
+          echo "Número generado: $numero"
+          echo "valor=$numero" >> $GITHUB_OUTPUT
+
+      # Paso 2: Evaluar si el número es mayor a 50
+      - name: Verificar si es mayor a 50
+        if: ${{ steps.generar.outputs.valor > 50 }}
+        run: echo "El número es mayor a 50. Ejecutando comandos..."
+
+      # Paso opcional: Mostrar que no se ejecuta si no se cumple la condición
+      - name: Verificar si es menor o igual a 50
+        if: ${{ steps.generar.outputs.valor <= 50 }}
+        run: echo "El número es menor o igual a 50. No se ejecuta el paso anterior."
