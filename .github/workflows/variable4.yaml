@@ -1,0 +1,56 @@
+name: Validación y despliegue condicional
+
+on:
+  push:
+    branches:
+      - main
+      - jseda-github_actions  # Tu rama personalizada
+
+jobs:
+  validar-config:
+    name: Validar y extraer config
+    runs-on: labs-runner
+
+    outputs:
+      version: ${{ steps.extraer.outputs.version }}
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Verificar existencia del archivo config.json
+        run: |
+          if [ ! -f config.json ]; then
+            echo "El archivo config.json no existe"
+            exit 1
+          fi
+
+      - name: Validar formato JSON
+        run: |
+          cat config.json | jq . > /dev/null || {
+            echo "El archivo config.json no es un JSON válido"
+            exit 1
+          }
+
+      - name: Extraer versión del archivo
+        id: extraer
+        run: |
+          version=$(jq -r '.version' config.json)
+          echo "Versión extraída: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+  despliegue:
+    name: Despliegue condicional
+    runs-on: labs-runner
+    needs: validar-config
+
+    steps:
+      - name: Desplegar en producción
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Desplegando en PRODUCCIÓN - Versión: ${{ needs.validar-config.outputs.version }}"
+
+      - name: Desplegar en entorno jseda-github_actions
+        if: github.ref == 'refs/heads/jseda-github_actions'
+        run: |
+          echo "Desplegando en JS-EDA - Versión: ${{ needs.validar-config.outputs.version }}"
