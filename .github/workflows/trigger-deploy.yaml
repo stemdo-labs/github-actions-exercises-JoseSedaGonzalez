@@ -1,0 +1,38 @@
+name: Activar despliegue
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - jseda-github_actions
+  workflow_dispatch:
+
+jobs:
+  elegir-entorno:
+    runs-on: ubuntu-latest
+    outputs:
+      entorno: ${{ steps.set-env.outputs.entorno }}
+
+    steps:
+      - name: Determinar entorno basado en la rama
+        id: set-env
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Rama detectada: $BRANCH"
+
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "entorno=production" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == "develop" ]]; then
+            echo "entorno=development" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == release/* ]]; then
+            echo "entorno=staging" >> $GITHUB_OUTPUT
+          else
+            echo "Rama no válida para despliegue"
+            exit 1
+
+  llamar-deploy:
+    needs: elegir-entorno
+    uses: nombre-usuario/nombre-repo/.github/workflows/deploy-environment.yml@main
+    with:
+      environment: ${{ needs.elegir-entorno.outputs.entorno }}
