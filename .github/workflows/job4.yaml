@@ -1,0 +1,18 @@
+name: Jobs - Ejercicio 4
+
+on:
+  workflow_dispatch:
+
+jobs:
+  crear-archivo:
+    runs-on: labs-runner
+    steps:
+      - name: Crear archivo de texto
+        run: echo "Este es un archivo de prueba" > test.txt
+
+  mover-archivo:
+    runs-on: labs-runner
+    needs: crear-archivo
+    steps:
+      - name: Intentar mover archivo
+        run: mv test.txt ./soluciones
