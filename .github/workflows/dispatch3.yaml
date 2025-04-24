@@ -1,0 +1,23 @@
+name: Confirmación manual
+
+# 1. Este workflow se ejecuta manualmente
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "¿Deseas continuar? Escribe true o false"
+        required: true
+        default: "false"
+
+jobs:
+  confirmacion:
+    runs-on: labs-runner
+
+    steps:
+      - name: Verificar valor de confirmación
+        run: |
+          if [[ "${{ github.event.inputs.confirm }}" == "true" ]]; then
+            echo "Confirmación positiva: continuando con el proceso..."
+          else
+            echo "Confirmación negativa: cancelando la ejecución."
+          fi
