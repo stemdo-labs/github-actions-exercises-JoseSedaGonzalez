@@ -1,0 +1,8 @@
+name: Llamar a workflow reutilizable
+
+on:
+  workflow_dispatch:  # Permite ejecutar manualmente este workflow
+
+jobs:
+  usar-reutilizable:
+    uses: ./.github/workflows/reusable.yml # Ruta al archivo del workflow reutilizable

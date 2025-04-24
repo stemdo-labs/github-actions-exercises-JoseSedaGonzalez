@@ -1,0 +1,11 @@
+name: Workflow Reutilizable
+
+on:
+  workflow_call:  # Esto permite que otros workflows llamen a este
+
+jobs:
+  imprimir-mensaje:
+    runs-on: labs-runner
+    steps:
+      - name: Mostrar mensaje
+        run: echo "Hola desde el workflow reutilizable"
