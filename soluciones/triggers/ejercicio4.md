@@ -21,3 +21,4 @@ jobs:
         run: echo "Scheduled job executed!"  # Imprime el mensaje en la consola
 
 ````
+<br><img src="../../datos/trigger4.png">
