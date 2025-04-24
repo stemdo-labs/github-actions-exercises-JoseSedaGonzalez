@@ -1,0 +1,35 @@
+name: Validar rama feature
+
+on:
+  workflow_call:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    outputs:
+      es_feature: ${{ steps.rama-valida.outputs.resultado }}
+
+    steps:
+      - name: Extraer nombre de la rama
+        id: rama-valida
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "Rama actual: $BRANCH_NAME"
+
+          if [[ "$BRANCH_NAME" == feature/* ]]; then
+            echo "Rama válida"
+            echo "resultado=true" >> $GITHUB_OUTPUT
+          else
+            echo "Rama inválida. No empieza por feature/"
+            echo "resultado=false" >> $GITHUB_OUTPUT
+          fi
+
+  tarea-principal:
+    runs-on: ubuntu-latest
+    needs: validar
+    if: needs.validar.outputs.es_feature == 'true'
+
+    steps:
+      - name: Ejecutar tarea principal
+        run: echo "Ejecutando tarea principal en rama feature/*"
+

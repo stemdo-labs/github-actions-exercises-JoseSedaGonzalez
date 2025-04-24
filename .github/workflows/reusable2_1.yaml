@@ -1,0 +1,8 @@
+name: Llamar a validación de rama feature
+
+on:
+  workflow_dispatch:
+
+jobs:
+  llamar-validacion:
+    uses: ./.github/workflows/reusable2.yaml
