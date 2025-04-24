@@ -1,3 +1,27 @@
 # Variables y Outputs - Ejercicio 2
 
 ## Configura un job que use un secreto definido en el repositorio (por ejemplo, MY_SECRET) y lo use en un comando.
+
+````yml
+# Nombre del workflow
+name: Variables y Outputs - Ejercicio 2
+
+# Se ejecuta manualmente con workflow_dispatch
+on:
+  workflow_dispatch:
+
+jobs:
+  usar-secreto:
+    # El job se ejecuta en el runner configurado
+    runs-on: labs-runner
+
+    steps:
+      # Paso único donde usamos el secreto
+      - name: Mostrar uso del secreto
+        # IMPORTANTE: nunca deberías imprimir directamente secretos reales.
+        # Aquí solo usamos un echo para simular el uso del secreto.
+        run: echo "Usando el secreto ${MY_SECRET}"
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+````
+<br><img src="../../datos/variable2.png">
