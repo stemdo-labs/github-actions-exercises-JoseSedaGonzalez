@@ -1,0 +1,21 @@
+# Nombre del workflow
+name: Job en múltiples SO
+
+# Este workflow se ejecuta manualmente
+on:
+  workflow_dispatch:
+
+jobs:
+  test-on-os:
+    # Usamos una matriz para ejecutar el mismo job en distintos sistemas operativos
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]  # Lista de sistemas operativos
+
+    steps:
+      - name: Mostrar información del sistema
+        run: |
+          echo "Sistema operativo: ${{ runner.os }}"
+          echo "Nombre del runner: ${{ runner.name }}"
+        shell: bash  # Para Windows y Mac también usamos bash (es compatible en Actions)
