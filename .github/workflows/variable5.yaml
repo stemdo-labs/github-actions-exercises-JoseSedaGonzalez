@@ -1,0 +1,82 @@
+name: Variables y Outputs - Ejercicio 5
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # ---------------------------------------------
+  # 1. Variables entre pasos del mismo job
+  # ---------------------------------------------
+  variables-mismo-job:
+    runs-on: labs-runner
+
+    steps:
+      - name: Definir variable local var1
+        run: |
+          var1=1
+          echo "Valor de var1 (local)  $var1"
+        # var1 es una variable local y no se comparte entre steps
+
+      - name: Definir variable persistente var2
+        run: |
+          echo "var2=2" >> $GITHUB_ENV
+        # var2 se añade al entorno global del job usando $GITHUB_ENV
+
+      - name: Imprimir valor de var2
+        run: |
+          echo "Valor de var2 (persistente entre steps)  $var2"
+
+  # ---------------------------------------------
+  # 2. Compartir variables entre pasos usando outputs
+  # ---------------------------------------------
+  output-entre-steps:
+    runs-on: labs-runner
+
+    steps:
+      - name: Definir output var_step_output
+        id: definir-output
+        run: echo "var_step_output=valor" >> $GITHUB_OUTPUT
+
+      - name: Usar output en el mismo job
+        run: echo "Valor de output  ${{ steps.definir-output.outputs.var_step_output }}"
+
+  # ---------------------------------------------
+  # 3. Compartir variables entre jobs
+  # ---------------------------------------------
+  compartir-var3:
+    runs-on: labs-runner
+    outputs:
+      var3: ${{ steps.set-output.outputs.var3 }}
+
+    steps:
+      - name: Intentar imprimir var2 (fallará)
+        run: echo "Valor de var2  $var2"
+        # Esto mostrará una cadena vacía, porque $GITHUB_ENV no se hereda entre jobs
+
+      - name: Definir output var3
+        id: set-output
+        run: echo "var3=3" >> $GITHUB_OUTPUT
+
+  # ---------------------------------------------
+  # 4. Usar variable de otro job (var3)
+  # ---------------------------------------------
+  usar-var3:
+    runs-on: labs-runner
+    needs: compartir-var3
+
+    steps:
+      - name: Imprimir valor recibido de otro job
+        run: echo "Valor de var3 desde otro job  ${{ needs.compartir-var3.outputs.var3 }}"
+
+  # ---------------------------------------------
+  # 5. Variables predefinidas de GitHub
+  # ---------------------------------------------
+  github-vars:
+    runs-on: labs-runner
+
+    steps:
+      - name: Mostrar variables predefinidas
+        run: |
+          echo "Repositorio: ${{ github.repository }}"
+          echo "Rama: ${{ github.ref }}"
+          echo "Evento que activó el workflow  ${{ github.event_name }}"

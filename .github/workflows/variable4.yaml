@@ -53,4 +53,4 @@ jobs:
       - name: Desplegar en entorno jseda-github_actions
         if: github.ref == 'refs/heads/jseda-github_actions'
         run: |
-          echo "Desplegando en JS-EDA - Versión: ${{ needs.validar-config.outputs.version }}"
+          echo "Desplegando en JSEDA - Versión: ${{ needs.validar-config.outputs.version }}"
