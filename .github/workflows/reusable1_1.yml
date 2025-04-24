@@ -5,4 +5,4 @@ on:
 
 jobs:
   usar-reutilizable:
-    uses: ./.github/workflows/reusable.yml # Ruta al archivo del workflow reutilizable
+    uses: ./.github/workflows/reusable1.yml # Ruta al archivo del workflow reutilizable
