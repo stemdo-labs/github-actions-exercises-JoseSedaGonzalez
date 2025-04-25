@@ -33,6 +33,6 @@ jobs:
 
   llamar-deploy:
     needs: elegir-entorno
-    uses: ./.github/workflows/deploy-environment.yml
+    uses: ./.github/workflows/deploy_environment.yml
     with:
       environment: ${{ needs.elegir-entorno.outputs.entorno }}
