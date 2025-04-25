@@ -17,7 +17,5 @@ jobs:
       - name: Mostrar información del entorno
         run: |
           echo "Entorno seleccionado: ${{ inputs.environment }}"
-          echo "API_URL: $API_URL"
-          echo "LOG_LEVEL: $LOG_LEVEL"
-          echo "Variables de entorno completas:"
-          env  
+          echo "API_URL: env.API_URL"
+          echo "LOG_LEVEL: env.LOG_LEVEL"
