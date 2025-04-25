@@ -33,6 +33,6 @@ jobs:
 
   llamar-deploy:
     needs: elegir-entorno
-    uses: jseda/github-actions-exercises-JoseSedaGonzalez/.github/workflows/deploy-environment.yml@main
+    uses: ./.github/workflows/deploy-environment.yml
     with:
       environment: ${{ needs.elegir-entorno.outputs.entorno }}
