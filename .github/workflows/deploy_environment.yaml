@@ -12,10 +12,13 @@ jobs:
     name: Desplegar en ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    env:
+      API_URL: ${{ vars.API_URL }}
+      LOG_LEVEL: ${{ vars.LOG_LEVEL }}
 
     steps:
       - name: Mostrar información del entorno
         run: |
-          echo "Desplegando en el entorno: ${{ inputs.environment }}"
+          echo "Entorno seleccionado: ${{ inputs.environment }}"
           echo "API_URL: $API_URL"
           echo "LOG_LEVEL: $LOG_LEVEL"
